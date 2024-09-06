@@ -1,0 +1,61 @@
+.card-note {
+    width: 200px;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    border-radius: 10px;
+    border: 1px solid #a7a7a7;
+    padding: 14px;
+    text-decoration: none;
+    color: #fff;
+}
+
+.title-card-note {
+    color: #fff;
+}
+
+
+.subtitle-card-note {
+    color: #eee;
+}
+
+
+.btns-card {
+    width: 100%;
+    display: flex; 
+    justify-content: space-between;
+    align-items: center;
+}
+
+.link-card {
+    text-decoration: none;
+    color: #fff;
+}
+
+.link-card:hover {
+    color: #3fb950;
+}
+
+.btn-delete-note {
+    padding: 10px;
+    color: #fa5e55;
+    background-color: #212830;
+    border: 1px solid #3d444d;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  .btn-delete-note:hover {
+    color: #fff;
+    background-color: #b62324;
+    border-color: transparent;
+  }
+
+
+@media (max-width: 375px) {
+    .card-note {
+        width: 100%;
+    }
+}

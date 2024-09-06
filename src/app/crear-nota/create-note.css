@@ -1,0 +1,63 @@
+.section-create-chat {
+    width: 100%; 
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.form-create {
+    width: 400px;
+    height: 250px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+    gap: 20px;
+}
+
+.container-input {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.container-input label {
+    color: #fff;
+    font-weight: 500;
+}
+
+.input-create {
+    padding: 10px;
+    border-radius: 5px;
+    background-color: transparent;
+    color: #fff;
+    border: 1px solid #b8b8b8;
+    outline: none;
+}
+
+.input-create:focus {
+    border-color: #3fb950 ;
+}
+
+.btn-create  { 
+    text-align: center;
+    color: #000;
+    border: none;
+    background-color: #fff;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 10px;
+    transition: .5s;
+    font-weight: 500;
+}
+
+.btn-create:hover {
+    color: #000;
+    background-color: #39d353;
+    transition: .5s;
+
+}

@@ -1,0 +1,87 @@
+.page-note {
+  width: 80%;
+  margin: auto;
+  height: 100vh;
+  overflow-y: auto;
+  padding: 60px 10px 10px 10px;
+  background-color: #121212;
+  color: #fff;
+}
+
+.target-text {
+  padding-top: 10px;
+}
+
+.container-controls-chat {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+}
+
+.btn-page-notas {
+  color: #000;
+  background-color: #39d353;
+  padding: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.5s;
+}
+
+.btn-page-notas:hover {
+  box-shadow: 0 0 10px #39d353;
+  transition: 0.5s;
+}
+
+
+.message {
+  width: 120px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  padding: 10px;
+  color: #121212;
+  background: #fff;
+  text-align: center;
+  box-shadow: 0 0 1px #fff;
+  transition: 0.5s;
+  transform: translateX(-200px);
+  position: absolute;
+  top: 60px;
+  left: 0;
+  text-align: end;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.view {
+  transition: 0.5s;
+  transform: translateX(0);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #444;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #666;
+}
+
+@media (max-width: 768px) {
+    .page-note {
+        width: 100%;
+        padding-top:60px;
+    }
+}
+
+
+
