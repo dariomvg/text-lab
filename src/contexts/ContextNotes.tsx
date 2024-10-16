@@ -1,5 +1,9 @@
 "use client";
-import { ChildrenContextType, ContextNotesTypes, DataFormTypes } from "@/types/types";
+import {
+  ChildrenContextType,
+  ContextNotesTypes,
+  DataFormTypes,
+} from "@/types/types";
 import { createContext, useContext, useEffect, useState } from "react";
 
 const NotesContext = createContext<ContextNotesTypes | null>(null);
@@ -11,7 +15,6 @@ export const useNotesContext = (): ContextNotesTypes => {
 };
 
 export default function NotesProvider({ children }: ChildrenContextType) {
-
   const [notes, setNotes] = useState<DataFormTypes[]>([]);
 
   const findProject = (id: number): DataFormTypes | undefined => {
@@ -26,10 +29,12 @@ export default function NotesProvider({ children }: ChildrenContextType) {
       data.id = Date.now();
       setNotes([...notes, data]);
     }
+
   };
 
   const deleteNote = (id: number) => {
     setNotes(notes.filter((note) => note.id !== id));
+
   };
 
   useEffect(() => {
@@ -39,13 +44,10 @@ export default function NotesProvider({ children }: ChildrenContextType) {
         setNotes(localNotes);
       }
     }
-  }, []); 
-
+  }, []);
 
   useEffect(() => {
-    if (notes.length > 0) { 
-      localStorage.setItem("textLab", JSON.stringify(notes));
-    }
+    localStorage.setItem("textLab", JSON.stringify(notes));
   }, [notes]);
 
   return (
