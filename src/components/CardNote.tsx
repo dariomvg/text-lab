@@ -2,11 +2,11 @@
 import Link from "next/link";
 import "../styles/card-note.css";
 import { useNotesContext } from "@/contexts/ContextNotes";
+import { PropsCard } from "@/types/types";
 
-export const CardNote = ({ item }) => {
+export const CardNote = ({ item }: PropsCard): JSX.Element => {
   const { id, title, topic } = item;
   const { deleteNote } = useNotesContext();
-
 
   return (  
     <div className="card-note">

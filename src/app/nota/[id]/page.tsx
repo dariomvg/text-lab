@@ -4,8 +4,9 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useHandleNotes } from "@/hooks/useHandleNotes";
 import iconCheck from "@/icons/icon-check.svg";
+import { NoteParams } from "@/types/types";
 
-export default function Note({ params }) {
+export default function Note({ params }: NoteParams): JSX.Element {
   const { id } = params;
   const { value, setValue, handleChangeNote, active } = useHandleNotes(id);
 

@@ -1,24 +1,24 @@
 "use client"; 
-import { useState } from "react";
+import { ChangeEvent, FormEvent, useState } from "react";
 import "./create-note.css";
 import { useNotesContext } from "@/contexts/ContextNotes";
 import { useRouter } from "next/navigation";
 import { dataForm } from "@/libs/objects";
 
-export default function NewChat () {
+export default function NewNote (): JSX.Element {
 
   const [form, setForm] = useState(dataForm); 
   const {addNote} = useNotesContext(); 
   const router = useRouter()
 
-  const handleChange = (e) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     })
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault(); 
     addNote(form); 
     setForm(dataForm); 

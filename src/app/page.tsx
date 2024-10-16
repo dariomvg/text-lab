@@ -1,7 +1,7 @@
 import Link from "next/link";
 import "./main.css";
 
-export default function Home() {
+export default function Home(): JSX.Element {
   return (
     <main className="main">
       <section className="section-main">

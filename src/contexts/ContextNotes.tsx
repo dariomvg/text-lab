@@ -1,25 +1,25 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { ChildrenContextType, ContextNotesTypes, DataFormTypes } from "@/types/types";
 import { createContext, useContext, useEffect, useState } from "react";
 
-const NotesContext = createContext();
+const NotesContext = createContext<ContextNotesTypes | null>(null);
 
-export const useNotesContext = () => {
+export const useNotesContext = (): ContextNotesTypes => {
   const context = useContext(NotesContext);
   if (!context) throw new Error("Error context app");
   return context;
 };
 
-export default function NotesProvider({ children }) {
-  const router = useRouter(); 
-  const [notes, setNotes] = useState([]);
+export default function NotesProvider({ children }: ChildrenContextType) {
 
-  const findProject = (id) => {
+  const [notes, setNotes] = useState<DataFormTypes[]>([]);
+
+  const findProject = (id: number): DataFormTypes | undefined => {
     const noteFound = notes.find((note) => note.id == id);
     return noteFound;
   };
 
-  const addNote = (data) => {
+  const addNote = (data: DataFormTypes) => {
     if (data.id) {
       setNotes(notes.map((note) => (data.id === note.id ? data : note)));
     } else {
@@ -28,14 +28,16 @@ export default function NotesProvider({ children }) {
     }
   };
 
-  const deleteNote = (id) => {
+  const deleteNote = (id: number) => {
     setNotes(notes.filter((note) => note.id !== id));
   };
 
   useEffect(() => {
-    const localNotes = JSON.parse(localStorage.getItem("textLab"));
-    if (localNotes) {
-      setNotes(localNotes); 
+    if (typeof window !== "undefined") {
+      const localNotes = JSON.parse(localStorage.getItem("textLab") || "[]");
+      if (localNotes.length > 0) {
+        setNotes(localNotes);
+      }
     }
   }, []); 
 

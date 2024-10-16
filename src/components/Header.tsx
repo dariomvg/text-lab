@@ -1,7 +1,7 @@
 import Link from "next/link"
 import "../styles/header.css"; 
 
-export const Header = () => {
+export const Header = (): JSX.Element => {
   return (
     <header className="header">
         <nav className="nav">
