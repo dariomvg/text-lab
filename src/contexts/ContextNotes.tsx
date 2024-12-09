@@ -29,7 +29,6 @@ export default function NotesProvider({ children }: ChildrenContextType) {
       data.id = Date.now();
       setNotes([...notes, data]);
     }
-
   };
 
   const deleteNote = (id: number) => {

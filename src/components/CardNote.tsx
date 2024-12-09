@@ -9,7 +9,7 @@ export const CardNote = ({ item }: PropsCard): JSX.Element => {
   const { deleteNote } = useNotesContext();
 
   return (  
-    <div className="card-note">
+    <div className="card-note" data-testid="card-note">
       <h3 className="title-card-note">{title}</h3>
         <p className="subtitle-card-note">
           <b>Tema: </b> {topic}

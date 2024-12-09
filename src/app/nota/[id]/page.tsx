@@ -20,7 +20,7 @@ export default function Note({ params }: NoteParams): JSX.Element {
         <button onClick={handleChangeNote} className="btn-page-notas">
           Guardar cambios
         </button>
-        <section className="target-text">
+        <section className="target-text" data-testid="show-text">
           <ReactQuill theme="snow" value={value} onChange={setValue} />
         </section>
       </section>
