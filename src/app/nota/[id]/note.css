@@ -13,30 +13,38 @@
 }
 
 .container-controls-chat {
-  width: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 10px;
-  gap: 10px;
+  gap: 20px;
 }
 
+
 .btn-page-notas {
-  color: #000;
-  background-color: #39d353;
+  color: #fff;
   padding: 8px;
   font-size: 16px;
   font-weight: 500;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 5px;
   cursor: pointer;
   transition: 0.5s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: transparent;
 }
 
-.btn-page-notas:hover {
+.save {
+  border-color: #39d353;
+}
+
+
+.save:hover {
   box-shadow: 0 0 10px #39d353;
   transition: 0.5s;
 }
+
+
 
 
 .message {

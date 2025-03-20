@@ -1,4 +1,4 @@
-import { Dispatch, ReactNode, SetStateAction } from "react";
+import { Dispatch, MutableRefObject, ReactNode, SetStateAction } from "react";
 
 export interface DataFormTypes {
   id: number;
@@ -28,9 +28,19 @@ export interface NoteParams {
   };
 }
 
+export interface Modules {
+  toolbar: {
+    container: (
+      | string[]
+      | { header: (number | boolean)[] }[]
+      | { list: string }[]
+    )[];
+  };
+}
+
 export interface HandleNotesTypes {
-    value: string
-    setValue: Dispatch<SetStateAction<string>>
-    handleChangeNote: () => void
-    active: boolean
+  value: string;
+  setValue: Dispatch<SetStateAction<string>>;
+  handleChangeNote: () => void;
+  active: boolean;
 }
