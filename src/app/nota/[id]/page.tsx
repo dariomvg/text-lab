@@ -9,7 +9,7 @@ import { NoteParams } from "@/types/types";
 export default function Note({ params }: NoteParams): JSX.Element {
   const { id } = params;
   const { value, setValue, handleChangeNote, active } = useHandleNotes(id);
-
+ 
   return (
     <>
       <div className={`message ${active ? "view" : ""}`}>

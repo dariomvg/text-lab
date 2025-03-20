@@ -36,6 +36,7 @@ export default function NewNote(): JSX.Element {
             name="title"
             value={form.title}
             onChange={handleChange}
+            required
           />
         </div>
         <div className="container-input">
@@ -47,6 +48,7 @@ export default function NewNote(): JSX.Element {
             name="topic"
             value={form.topic}
             onChange={handleChange}
+            required
           />
         </div>
         <button type="submit" className="btn-create">

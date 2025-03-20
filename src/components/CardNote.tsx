@@ -16,7 +16,7 @@ export const CardNote = ({ item }: PropsCard): JSX.Element => {
         </p>
         <div className="btns-card">
           <button className="btn-delete-note" onClick={() => deleteNote(id)}>Eliminar</button>
-          <Link href={`/nota/${id}`} className="link-card">Visitar</Link>
+          <Link href={`/nota/${id}`} className="link-card">Abrir</Link>
         </div>
     </div>
   );
