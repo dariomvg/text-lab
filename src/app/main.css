@@ -17,6 +17,8 @@
 
 .section-main section {
     padding: 10px;
+    position: relative;
+  z-index:9;
 }
 
 .title-main {
