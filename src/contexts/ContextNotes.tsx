@@ -18,22 +18,20 @@ export default function NotesProvider({ children }: ChildrenContextType) {
   const [notes, setNotes] = useState<DataFormTypes[]>([]);
 
   const findProject = (id: number): DataFormTypes | undefined => {
-    const noteFound = notes.find((note) => note.id == id);
-    return noteFound;
+    const note = notes.find((note) => note.id == id);
+    return note;
   };
 
   const addNote = (data: DataFormTypes) => {
     if (data.id) {
       setNotes(notes.map((note) => (data.id === note.id ? data : note)));
     } else {
-      data.id = Date.now();
-      setNotes([...notes, data]);
+      setNotes([...notes, {...data, id: Date.now()}]);
     }
   };
 
   const deleteNote = (id: number) => {
     setNotes(notes.filter((note) => note.id !== id));
-
   };
 
   useEffect(() => {
@@ -50,7 +48,7 @@ export default function NotesProvider({ children }: ChildrenContextType) {
   }, [notes]);
 
   return (
-    <NotesContext.Provider value={{ notes, addNote, deleteNote, findProject }}>
+    <NotesContext.Provider value={{ notes, addNote, deleteNote, findProject}}>
       {children}
     </NotesContext.Provider>
   );

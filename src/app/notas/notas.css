@@ -1,15 +1,23 @@
+.section-main-chats {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: 99;
+}
 .section-chats {
     width: 70%;
-    height: 100vh;
+    height: 100%;
     overflow-y: auto;
     margin: auto;
     padding: 70px 10px 10px 10px;
     display: flex;
-
     align-items: center;
     flex-direction: column;
     gap: 10px;
+    position: relative;
+    z-index: 99;
 }
+
 
 
 .title-chats {
@@ -53,14 +61,29 @@
     border-color: #39d353;  
 }
 
-@media (max-width: 375px) {
+@media (max-width: 768px) {
     .section-chats {
         width: 100%;
+    }
+
+    .container-chats {
+        gap: 10px;
     }
 }
 
 
-
+.box-gradient {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height:100%;
+    opacity: 0.3;
+    filter: blur(10px);
+background: #39d353;
+background: radial-gradient(circle farthest-side at bottom right, #39d353 0%, transparent 40%);
+background: -webkit-radial-gradient(circle farthest-side at bottom right, #39d353 0%, transparent 40%);
+background: -moz-radial-gradient(circle farthest-side at bottom right, #39d353 0%, transparent 40%);
+}
 
 
 

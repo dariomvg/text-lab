@@ -5,19 +5,19 @@
     flex-direction: column;
     gap: 10px;
     border-radius: 10px;
-    border: 1px solid #212830;
-    padding: 14px;
+    border: 1px solid #80808076;
+    padding: 10px;
     text-decoration: none;
     color: #fff;
 }
 
 .title-card-note {
-    color: #fff;
+    color: #ddd;
 }
 
 
 .subtitle-card-note {
-    color: #eee;
+    color: #aaa;
 }
 
 
@@ -32,30 +32,35 @@
     text-decoration: none;
     color: #fff;
     font-weight: 500;
+    transition: color .5s;
 }
 
 .link-card:hover {
     color: #3fb950;
+    transition: color .5s;
 }
 
 .btn-delete-note {
     padding: 10px;
     color: #fa5e55;
-    background-color: #212830;
-    border: none;
+    background-color: #161616;
+    border: 1px solid transparent;
     font-size: 16px;
     font-weight: 500;
     border-radius: 5px;
     cursor: pointer;
+    transition:border .5s;
+
   }
+
   .btn-delete-note:hover {
-    color: #fff;
-    background-color: #b62324;
-    border-color: transparent;
+    border-color: #b62324;
+    transition: border .5s;
+
   }
 
 
-@media (max-width: 375px) {
+@media (max-width: 425px) {
     .card-note {
         width: 100%;
     }

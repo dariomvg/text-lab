@@ -1,4 +1,8 @@
-import { Dispatch, MutableRefObject, ReactNode, SetStateAction } from "react";
+import { ColorOptions } from "@tiptap/extension-color";
+import { LinkOptions } from "@tiptap/extension-link";
+import { Extension, Mark, Node } from "@tiptap/react";
+import { StarterKitOptions } from "@tiptap/starter-kit";
+import { Dispatch, ReactNode, SetStateAction } from "react";
 
 export interface DataFormTypes {
   id: number;
@@ -38,9 +42,26 @@ export interface Modules {
   };
 }
 
-export interface HandleNotesTypes {
-  value: string;
-  setValue: Dispatch<SetStateAction<string>>;
-  handleChangeNote: () => void;
-  active: boolean;
+export interface UseFindNoteTypes {
+  saveContentNote: () => void;
+  message: string;
+  html: string;
+  setHtml: Dispatch<SetStateAction<string>>;
+}
+
+export interface UseEditorConfig {
+  extensions: (
+    | Extension<ColorOptions, any>
+    | Extension<StarterKitOptions, any>
+    | Mark<LinkOptions, any>
+    | Node
+  )[];
+  addImage: () => void;
+  addLink: () => void;
+}
+
+export interface ObjectAI {
+  id: string;
+  question: string;
+  result: string;
 }

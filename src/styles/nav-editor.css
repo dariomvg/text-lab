@@ -1,0 +1,74 @@
+.control-group {
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.control-group button {
+    border-radius: 5px;
+    padding: 8px; 
+    background-color: #151515;
+    color: #ddd;
+    font-weight: 500;
+    font-size: 14px;
+    border: 1px solid transparent;
+    transition: .5s;
+    cursor: pointer;
+    display: flex;
+    gap: 3px;
+    align-items: center;
+    transition: border .5s;
+}
+.control-group button:hover {
+    border-color: #3fb950;
+    transition: border .5s;
+}
+
+.control-group .is-active {
+    border-color: #3fb950;
+    background-color: #153118;
+}
+
+.section-elements {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  
+}
+.space {
+    gap: 10px;
+}
+
+.container-elements {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 5px;
+}
+
+
+@media (max-width: 768px) {
+    .section-elements {
+        width: 100%; 
+        flex-wrap: wrap;
+    }
+    .container-elements {
+
+        flex-wrap: wrap; 
+    }
+
+    .control-group {
+        gap: 12px; 
+    }
+
+    .space {
+        gap: 16px;
+    }
+  }
+
+
+

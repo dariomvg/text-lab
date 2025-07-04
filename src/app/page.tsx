@@ -5,22 +5,29 @@ export default function Home(): JSX.Element {
   return (
     <main className="main">
       <section className="section-main">
-        <div className="cont-title-main">
-          <p className="title-main">Crea tus propias</p>
-          <p className="title-main"><b className="t-color">notas</b></p>
-          <p className="title-main">personalizadas</p>
-          <p className="title-main">para ti</p>
-        </div>
+        <section>
+          <div className="cont-title-main">
+            <p className="title-main">Crea tus propias</p>
+            <p className="title-main">
+              <b className="t-color">notas</b>
+            </p>
+            <p className="title-main">personalizadas con IA</p>
+            <p className="title-main">para ti</p>
+          </div>
 
-        <div className="links-main">
-          <Link href="/crear-nota" className="link-main">Crear nota</Link>
-          <Link href="/notas" className="link-main">Tus notas</Link>
-        </div>
+          <div className="links-main">
+            <Link href="/crear-nota" className="link-main start-link">
+              Comenzar
+            </Link>
+            <Link href="/notas" className="link-main link-main-notes">
+              Notas
+            </Link>
+          </div>
+        </section>
+        
+          <div className="box-gr b-1"></div>
+        
       </section>
-      <div className="logo-main">
-        <div className="box b-1"></div>
-        <div className="box b-2"></div>
-      </div>
     </main>
   );
 }

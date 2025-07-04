@@ -4,9 +4,9 @@ import { Header } from "@/components/Header";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "TextLab - crea tus notas con los temas que necesites",
+  title: "TextLab - Notas - IA",
   description:
-    "TextLab te permite crear notas o apuntes sobre temas personales: trabajo, estudio, proyectos. lo que te ayuda a mantener todo separado y ordenado",
+    "Escribe tus notas de una forma profesional, completa con todo lo que necesitas e integrado con IA",
 };
 
 export default function RootLayout({

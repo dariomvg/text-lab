@@ -1,41 +1,62 @@
 "use client";
-import "./note.css";
-import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useHandleNotes } from "@/hooks/useHandleNotes";
-import iconCheck from "@/icons/icon-check.svg";
+import { useFindNote } from "@/hooks/useFindNote";
+import iconCheck from "@/assets/icon-check.svg";
+import iconInfo from "@/assets/icon-info.svg";
 import { NoteParams } from "@/types/types";
-import { formats, modules } from "@/libs/options";
+import { NavEditor } from "@/components/NavEditor";
+import { EditorProvider } from "@tiptap/react";
+import { useEditorConfig } from "@/hooks/useEditorConfig";
+import Link from "next/link";
+import "./note.css";
+import { SectionAI } from "@/components/SectionAI";
+import { useState } from "react";
 
 export default function Note({ params }: NoteParams): JSX.Element {
   const { id } = params;
-  const { value, setValue, handleChangeNote, active } =
-    useHandleNotes(id);
+  const { saveContentNote, message, html, setHtml } = useFindNote(id);
+  const { extensions } = useEditorConfig();
+  const [openChat, setOpenChat] = useState<boolean>(false);
+  const [showInfo, setShowInfo] = useState<boolean>(false); 
+  const toggleChat = () => {
+    setOpenChat(!openChat);
+  };
 
   return (
-    <>
-      <div className={`message ${active ? "view" : ""}`}>
-        <p>Guardado</p>
+    <main className="main-editor">
+      <div className={`message ${message ? "view" : ""}`}>
+        <p>{message}</p>
         <img src={iconCheck.src} alt="check message" width={30} height={30} />
       </div>
       <section className="page-note">
-        <div>
-          <button onClick={handleChangeNote} className="btn-page-notas save">
-            Guardar cambios
-            <img src={iconCheck.src} alt="check message" width={25} height={25} />
-          </button>
-        </div>
-
-        <section className="target-text" data-testid="show-text">
-          <ReactQuill
-            theme="snow"
-            value={value}
-            onChange={setValue}
-            modules={modules}
-            formats={formats}
+        <section className="section-editor">
+          <div className="container-buttons-form">
+            <button className="button-form" onClick={saveContentNote}>
+              Guardar
+            </button>
+            <Link href="/notas" className="link-form delete-form">
+              Cancelar
+            </Link>
+            <button onClick={toggleChat} className="button-ia">
+              Pregunta a la IA
+            </button>
+            <button className="button-info" onClick={() => setShowInfo(!showInfo)}>
+              <img src={iconInfo.src} alt="icon info" width={30} height={30} />
+            </button>
+            
+            <div className={`container-info ${showInfo ? "show-info" : ""}`}>
+              <p className="text-info">El texto generado con IA en esta nota no se almacenará, una vez salgas, se eliminara todo lo buscado</p>
+            </div>
+          </div>
+          <EditorProvider
+            slotBefore={<NavEditor />}
+            extensions={extensions}
+            content={html}
+            onUpdate={({ editor }) => setHtml(editor.getHTML())}
           />
         </section>
+        <SectionAI openChat={openChat} toggleChat={toggleChat} />
       </section>
-    </>
+    </main>
   );
 }
