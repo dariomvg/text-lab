@@ -50,6 +50,7 @@ export default function Note({ params }: NoteParams): JSX.Element {
           </div>
           <EditorProvider
             slotBefore={<NavEditor />}
+            immediatelyRender={false}
             extensions={extensions}
             content={html}
             onUpdate={({ editor }) => setHtml(editor.getHTML())}

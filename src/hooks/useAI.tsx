@@ -1,10 +1,7 @@
 "use client";
 import { useState } from "react";
 import { ObjectAI } from "@/types/types";
-import { GoogleGenAI } from "@google/genai";
-import { IA_API_KEY } from "@/libs/options_ai";
-
-const clientAI = new GoogleGenAI({ apiKey: IA_API_KEY });
+import { client } from "@/libs/options_ai";
 
 export const useAI = () => {
   const [responsesAI, setResponsesAI] = useState<ObjectAI[]>([]);
@@ -14,7 +11,7 @@ export const useAI = () => {
   const create = async (question: string) => {
     try {
       setLoading(true)
-      const response = await clientAI.models.generateContent({
+      const response = await client.models.generateContent({
         model: "gemini-2.5-flash",
         contents: question,
       });
