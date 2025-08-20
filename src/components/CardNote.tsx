@@ -4,7 +4,7 @@ import "../styles/card-note.css";
 import { useNotesContext } from "@/contexts/ContextNotes";
 import { PropsCard } from "@/types/types";
 
-export const CardNote = ({ item }: PropsCard): JSX.Element => {
+export const CardNote = ({ item }: PropsCard) => {
   const { id, title, topic } = item;
   const { deleteNote } = useNotesContext();
 

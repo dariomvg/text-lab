@@ -4,7 +4,7 @@ import Link from "next/link";
 import "./notas.css";
 import { useNotesContext } from "@/contexts/ContextNotes";
 
-export default function Notas(): JSX.Element {
+export default function Notas() {
   const { notes } = useNotesContext();
 
   return (

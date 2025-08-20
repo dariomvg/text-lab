@@ -2,7 +2,7 @@ import Link from "next/link"
 import "../styles/header.css"; 
 import iconGithub from "@/assets/github_dark.svg"
 
-export const Header = (): JSX.Element => {
+export const Header = () => {
   return (
     <header className="header">
         <nav className="nav">

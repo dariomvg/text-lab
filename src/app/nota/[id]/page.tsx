@@ -12,7 +12,7 @@ import "./note.css";
 import { SectionAI } from "@/components/SectionAI";
 import { useState } from "react";
 
-export default function Note({ params }: NoteParams): JSX.Element {
+export default function Note({ params }: NoteParams) {
   const { id } = params;
   const { saveContentNote, message, html, setHtml } = useFindNote(id);
   const { extensions } = useEditorConfig();

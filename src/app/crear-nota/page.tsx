@@ -1,26 +1,26 @@
 "use client";
-import { ChangeEvent, FormEvent, useState } from "react";
+import { FormEvent, useRef} from "react";
 import "./create-note.css";
 import { useNotesContext } from "@/contexts/ContextNotes";
 import { useRouter } from "next/navigation";
-import { dataForm } from "@/libs/objects";
 
-export default function NewNote(): JSX.Element {
-  const [form, setForm] = useState(dataForm);
+export default function NewNote() {
+  const refTitle = useRef<HTMLInputElement>(null);
+  const refTopic = useRef<HTMLInputElement>(null);
   const { addNote } = useNotesContext();
   const router = useRouter();
 
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
-
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    addNote(form);
-    setForm(dataForm);
+    const newNote = {
+      id: 0,
+      content: "",
+      title: refTitle.current.value,
+      topic: refTopic.current.value
+    }
+    addNote(newNote);
+    refTitle.current.value = "";
+    refTopic.current.value = "";
     router.push("/notas");
   };
 
@@ -34,21 +34,19 @@ export default function NewNote(): JSX.Element {
             id="titulo"
             className="input-create"
             name="title"
-            value={form.title}
-            onChange={handleChange}
             required
+            ref={refTitle}
           />
         </div>
         <div className="container-input">
-          <label htmlFor="tema">Tema de la nota</label>
+          <label htmlFor="topic">Tema de la nota</label>
           <input
             type="text"
-            id="tema"
+            id="topic"
             className="input-create"
             name="topic"
-            value={form.topic}
-            onChange={handleChange}
             required
+            ref={refTopic}
           />
         </div>
         <button type="submit" className="btn-create">

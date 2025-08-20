@@ -8,7 +8,6 @@ export const useAI = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [err, setErr] = useState(null);
   
-
   const create = async (question: string) => {
     try {
       setLoading(true)
