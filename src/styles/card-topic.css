@@ -1,0 +1,28 @@
+.card-topic-note {
+    width: 100%; 
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+    background-color: #101010; 
+    border-radius: 5px;
+    padding: 10px;
+    cursor: pointer;
+    transition: .5s ease-in-out; 
+    border: 1px solid transparent; 
+}
+
+.card-topic-note:hover {
+    background-color: #204126; 
+} 
+
+.name-box-topic {
+    font-size: 14px; 
+    font-weight: 500;
+    color: #fff; 
+}
+
+.current-topic {
+    border-color: #39d353;
+    background-color: #204126; 
+
+}

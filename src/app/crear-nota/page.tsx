@@ -1,26 +1,28 @@
 "use client";
-import { FormEvent, useRef} from "react";
+import { FormEvent, useRef, useState } from "react";
 import "./create-note.css";
 import { useNotesContext } from "@/contexts/ContextNotes";
 import { useRouter } from "next/navigation";
+import { SectionTopics } from "@/components/SectionTopics";
 
 export default function NewNote() {
-  const refTitle = useRef<HTMLInputElement>(null);
-  const refTopic = useRef<HTMLInputElement>(null);
-  const { addNote } = useNotesContext();
   const router = useRouter();
+  const refTitle = useRef<HTMLInputElement>(null);
+  const [currentTopic, setCurrentTopic] = useState<string | null>(null);
+  const { addNote } = useNotesContext();
+
+  const changeTopic = (newTopic: string) => {
+    setCurrentTopic(newTopic);
+  };
 
   const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const newNote = {
-      id: 0,
-      content: "",
+    addNote({
       title: refTitle.current.value,
-      topic: refTopic.current.value
-    }
-    addNote(newNote);
+      topic: currentTopic ?? "Personal",
+    });
     refTitle.current.value = "";
-    refTopic.current.value = "";
+    setCurrentTopic("");
     router.push("/notas");
   };
 
@@ -38,17 +40,9 @@ export default function NewNote() {
             ref={refTitle}
           />
         </div>
-        <div className="container-input">
-          <label htmlFor="topic">Tema de la nota</label>
-          <input
-            type="text"
-            id="topic"
-            className="input-create"
-            name="topic"
-            required
-            ref={refTopic}
-          />
-        </div>
+
+        <SectionTopics currentTopic={currentTopic} changeTopic={changeTopic} />
+
         <button type="submit" className="btn-create">
           Crear
         </button>

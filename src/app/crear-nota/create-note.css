@@ -9,11 +9,10 @@
 
 .form-create {
     width: 400px;
-    height: 250px;
+    height: 300px;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
     padding: 10px;
     gap: 20px;
 }
@@ -61,3 +60,7 @@
     transition: .5s;
 
 }
+
+
+
+

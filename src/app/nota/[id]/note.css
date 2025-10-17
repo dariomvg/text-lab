@@ -52,69 +52,37 @@
 }
 
 .link-form {
-  background-color: transparent;
-  border: 1px solid #bd4242;
-  color: #bd4242;
+  color: #ccc;
   padding: 10px;
-  border-radius: 5px;
   text-decoration: none;
   font-size: 14px;
   font-weight: 500; 
-  transition: .5s;
-
+  border:none;
+  transition: .5s ease-in-out;
+  display: flex; 
+  align-items: center;
+  gap: 5px; 
 }
 
 .link-form:hover {
-  border: 1px solid #e70d0d;
-  color: #e70d0d;
-  transition: .5s;
+  color: #fff;
 }
 
-.button-ia {
-  background-color: none;
-  font-size: 14px;
-  color: #ccc;
+.button-container-form {
+  background-color: transparent;
   font-weight: 500;
   border: none; 
-  background-color: transparent;
-  transition: color .5s;
+  transition: .5s ease-in-out;
+  border-radius: 5px;
+  padding: 5px;
   cursor: pointer; 
 }
 
-.button-ia:hover {
-  color: #fff;
-  text-decoration: underline;
-  transition: color .5s;
-}
-
-.button-info {
-  background-color: transparent; 
-  border:none; 
-  cursor: pointer;
-}
-
-.container-info {
-  width: 200px; 
-  border-radius: 10px;
+.button-container-form:hover {
   background-color: #202020; 
-  padding: 10px;
-  position:absolute; 
-  right: 5px;
-  top: 0;
-  transition: .5s; 
-  opacity: 0;
-  visibility: hidden;
-}
-.show-info {
-  opacity: 1;
-  visibility: visible;
-  transition: .5s;
 }
 
-.text-info {
-  color: #ddd; 
-  font-size: 16px;
-}
+
 
 .save {
   border-color: #39d353;
@@ -126,31 +94,6 @@
   transition: 0.5s;
 }
 
-.message {
-  width: 120px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  padding: 10px;
-  color: #121212;
-  background: #fff;
-  text-align: center;
-  box-shadow: 0 0 1px #fff;
-  transition: 0.5s;
-  transform: translateX(-200px);
-  position: absolute;
-  top: 60px;
-  left: 0;
-  text-align: end;
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  z-index: 99;
-}
-
-.view {
-  transition: 0.5s;
-  transform: translateX(0);
-}
 
 ::-webkit-scrollbar {
   width: 6px;

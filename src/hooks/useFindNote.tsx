@@ -1,26 +1,24 @@
 "use client";
 import { useNotesContext } from "@/contexts/ContextNotes";
 import { DataFormTypes, UseFindNoteTypes } from "@/types/types";
-import { useState } from "react";
+import { useRef } from "react";
+import toast from "react-hot-toast";
 
 export const useFindNote = (id: string): UseFindNoteTypes => {
   const { findProject, addNote } = useNotesContext();
   const current = findProject(parseInt(id));
-  const [message, setMessage] = useState("");
-  const [html, setHtml] = useState(current?.content || "");
-
-  const handleActive = (msg: string) => {
-    setMessage(msg);
-    setTimeout(() => setMessage(""), 4000);
-  };
+  const html = useRef(current?.content || "");
 
   const saveContentNote = () => {
     if (current) {
-      const newProject: DataFormTypes = { ...current, content: html };
+      const newProject: DataFormTypes = { ...current, content: html.current };
       addNote(newProject);
-      handleActive("Guardado");
+      toast.success("Guardado", {
+        position: "top-left",
+        duration: 3000,
+      });
     }
   };
 
-  return { saveContentNote, message, html, setHtml };
+  return { saveContentNote, html };
 };

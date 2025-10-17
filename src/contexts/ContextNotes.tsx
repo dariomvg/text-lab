@@ -26,7 +26,7 @@ export default function NotesProvider({ children }: ChildrenContextType) {
     if (data.id) {
       setNotes(notes.map((note) => (data.id === note.id ? data : note)));
     } else {
-      setNotes([...notes, {...data, id: Date.now()}]);
+      setNotes([...notes, { ...data, content: "", id: Date.now() }]);
     }
   };
 
@@ -48,7 +48,7 @@ export default function NotesProvider({ children }: ChildrenContextType) {
   }, [notes]);
 
   return (
-    <NotesContext.Provider value={{ notes, addNote, deleteNote, findProject}}>
+    <NotesContext.Provider value={{ notes, addNote, deleteNote, findProject }}>
       {children}
     </NotesContext.Provider>
   );

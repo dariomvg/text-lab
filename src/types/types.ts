@@ -2,13 +2,19 @@ import { ColorOptions } from "@tiptap/extension-color";
 import { LinkOptions } from "@tiptap/extension-link";
 import { Extension, Mark, Node } from "@tiptap/react";
 import { StarterKitOptions } from "@tiptap/starter-kit";
-import { Dispatch, ReactNode, SetStateAction } from "react";
+import { MutableRefObject, ReactNode } from "react";
+
+export interface TopicsTypes {
+  id: number;
+  name: string;
+  icon: { alt: string; src: string };
+}
 
 export interface DataFormTypes {
-  id: number;
+  id?: number;
   title: string;
   topic: string;
-  content: string;
+  content?: string;
 }
 
 export interface PropsCard {
@@ -44,9 +50,7 @@ export interface Modules {
 
 export interface UseFindNoteTypes {
   saveContentNote: () => void;
-  message: string;
-  html: string;
-  setHtml: Dispatch<SetStateAction<string>>;
+  html: MutableRefObject<string>;
 }
 
 export interface UseEditorConfig {
@@ -60,8 +64,28 @@ export interface UseEditorConfig {
   addLink: () => void;
 }
 
+export interface UseShareTypes {
+  createFilePDF: (content: string) => void;
+  createFileMarkdown: (content: string) => void;
+  createFileText: (content: string) => void;
+  transformFile: (content: string, filename: string, typeMIME: string) => void;
+  loading: {loadingPdf: boolean, loadingMarkdown: boolean}; 
+}
+
 export interface ObjectAI {
   id: string;
   question: string;
   result: string;
+}
+
+type TypeFile = {
+  filename: string; 
+  type: string; 
+}
+
+export interface TypesFiles {
+  html: TypeFile;
+  txt: TypeFile;
+  markdown: TypeFile; 
+  pdf: TypeFile;
 }

@@ -1,0 +1,83 @@
+.section-share {
+    width: 100%; 
+    height: 100vh; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;    
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #101010b7;
+}
+
+
+.show-modal-share{
+    opacity: 1; 
+    visibility: visible;
+    pointer-events: all;
+}
+
+.modal-share{
+    width: 400px; 
+    height: 200px;
+    border-radius: 10px;
+    background-color: #181818;
+    box-shadow: 0 0 30px #181818;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.button-close-modal{
+    padding: 10px;
+    background: #080808;
+    border: 1px solid transparent; 
+    border-radius: 10px; 
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    color: #fff; 
+    transition: .5s ease-in-out;
+}
+
+.button-close-modal:hover {
+    border-color: #404040;
+}
+
+.title-model-share{
+    text-align: center;
+    color: #ddd; 
+}
+
+.container-buttons-modal{
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+}
+
+.button-modal{
+    background-color: #101010;
+    padding: 10px;
+    font-size: 14px;
+    color: #fff; 
+    border: 1px solid #303030; 
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px; 
+    font-weight: 500;
+    transition: .5s ease-in-out;
+    cursor: pointer;
+}
+.button-modal:hover {
+    border-color: #fff; 
+}
+
+.icon-button-modal{
+
+}

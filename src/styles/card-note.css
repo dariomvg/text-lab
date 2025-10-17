@@ -15,11 +15,18 @@
     color: #ddd;
 }
 
-
-.subtitle-card-note {
-    color: #aaa;
+.box-topic-card-note {
+    width: 100%;
+    display: flex;
+    align-items: center; 
+    gap: 6px; 
 }
 
+.title-box-topic {
+    font-size: 16px; 
+    color: #b1b1b1;
+    font-weight: 500;
+}
 
 .btns-card {
     width: 100%;
@@ -32,12 +39,13 @@
     text-decoration: none;
     color: #fff;
     font-weight: 500;
-    transition: color .5s;
+    transition: .5s ease-in-out;
+    display: flex; 
+    align-items: center;
 }
 
 .link-card:hover {
     color: #3fb950;
-    transition: color .5s;
 }
 
 .btn-delete-note {
