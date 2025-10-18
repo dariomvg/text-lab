@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@google/genai": "^1.8.0",
+    "@sparticuz/chromium": "^141.0.0",
     "@tiptap/extension-blockquote": "^2.22.3",
     "@tiptap/extension-code": "^2.22.3",
     "@tiptap/extension-code-block-lowlight": "^2.22.3",
@@ -33,6 +34,7 @@
     "markdown-to-txt": "^2.0.1",
     "next": "14.2.8",
     "puppeteer": "^24.25.0",
+    "puppeteer-core": "^24.25.0",
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.6.0",
