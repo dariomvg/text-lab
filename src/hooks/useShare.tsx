@@ -15,18 +15,28 @@ export const useShare = (): UseShareTypes => {
   const createFilePDF = async (content: string) => {
     try {
       setLoading({ ...loading, loadingPdf: true });
-      const res = await fetch("/api/generate-pdf", {
+      const response = await fetch("/api/generate-pdf", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ html: content }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          html: content,
+          filename: formats.pdf.filename,
+        }),
       });
 
-      if (!res.ok) throw new Error("Error generando PDF");
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.error || "Error al generar PDF");
+      }
 
-      const blobPdf = await res.blob();
-      transformFile(blobPdf, formats.pdf.filename, formats.pdf.type);
+      const blob = await response.blob();
+
+      transformFile(blob, formats.pdf.filename, "application/pdf");
     } catch (error) {
-      console.log(error);
+      console.error("Error en generateAndDownloadPDF:", error);
+      throw error;
     } finally {
       setLoading({ ...loading, loadingPdf: false });
       toast.success("PDF completo", {
@@ -34,6 +44,7 @@ export const useShare = (): UseShareTypes => {
         duration: 3000,
       });
     }
+
   };
 
   const createFileMarkdown = async (content: string) => {

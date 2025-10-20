@@ -1,53 +1,75 @@
-import puppeteer from 'puppeteer-core';
-import chromium from '@sparticuz/chromium';
+import { NextRequest, NextResponse } from 'next/server';
+import puppeteer from 'puppeteer';
 
-export const runtime = 'nodejs';
-
-export async function POST(req: Request) {
+export async function POST(request: NextRequest) {
+  let browser;
+  
   try {
-    const { html } = await req.json();
-    const isProd = process.env.NODE_ENV === 'production';
+    const { html, filename } = await request.json();
 
-    // 👇 obtenemos la ruta del binario correcto
-    const executablePath = isProd
-      ? await chromium.executablePath()
-      : process.platform === 'win32'
-        ? 'C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe'
-        : process.platform === 'linux'
-          ? '/usr/bin/google-chrome'
-          : '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
+    if (!html) {
+      return NextResponse.json(
+        { error: 'HTML content is required' },
+        { status: 400 }
+      );
+    }
 
-    // ⚙️ configuración especial para serverless
-    const browser = await puppeteer.launch({
-      args: chromium.args,
-      defaultViewport: { width: 1920, height: 1080 },
-      executablePath,
+    browser = await puppeteer.launch({
       headless: true,
+      args: [
+        '--no-sandbox',
+        '--disable-setuid-sandbox',
+        '--disable-dev-shm-usage',
+        '--disable-accelerated-2d-canvas',
+        '--disable-gpu'
+      ],
+     
+      ...(process.env.NODE_ENV === 'production' && {
+        executablePath: await import('@sparticuz/chromium').then(
+          chromium => chromium.default.executablePath()
+        )
+      })
     });
 
     const page = await browser.newPage();
-    await page.setContent(
-      `<!DOCTYPE html><html><head><meta charset="utf-8" /></head><body>${html}</body></html>`,
-      { waitUntil: 'networkidle0' }
-    );
+    
+    
+    await page.setContent(html, {
+      waitUntil: 'networkidle0'
+    });
 
+    
     const pdfBuffer = await page.pdf({
       format: 'A4',
       printBackground: true,
+      margin: {
+        top: '20px',
+        right: '20px',
+        bottom: '20px',
+        left: '20px'
+      }
     });
 
     await browser.close();
 
-    return new Response(Buffer.from(pdfBuffer), {
+    return new NextResponse(pdfBuffer, {
+      status: 200,
       headers: {
         'Content-Type': 'application/pdf',
-        'Content-Disposition': 'attachment; filename="documento.pdf"',
-      },
+        'Content-Disposition': `attachment; filename="${filename || 'document.pdf'}"`,
+        'Cache-Control': 'no-store'
+      }
     });
+
   } catch (error) {
-    console.error('Error generando PDF en createFilePDF:', error);
-    return new Response(
-      JSON.stringify({ error: (error as Error).message }),
+    console.error('Error generating PDF:', error);
+    
+    if (browser) {
+      await browser.close();
+    }
+
+    return NextResponse.json(
+      { error: 'Failed to generate PDF', details: error instanceof Error ? error.message : 'Unknown error' },
       { status: 500 }
     );
   }
