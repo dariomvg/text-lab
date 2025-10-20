@@ -65,11 +65,9 @@ export interface UseEditorConfig {
 }
 
 export interface UseShareTypes {
-  createFilePDF: (content: string) => void;
   createFileMarkdown: (content: string) => void;
   createFileText: (content: string) => void;
   transformFile: (content: string, filename: string, typeMIME: string) => void;
-  loading: {loadingPdf: boolean, loadingMarkdown: boolean}; 
 }
 
 export interface ObjectAI {
@@ -86,6 +84,5 @@ type TypeFile = {
 export interface TypesFiles {
   html: TypeFile;
   txt: TypeFile;
-  markdown: TypeFile; 
-  pdf: TypeFile;
+  markdown: TypeFile;
 }

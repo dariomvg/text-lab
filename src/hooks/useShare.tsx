@@ -3,65 +3,11 @@ import { UseShareTypes } from "@/types/types";
 import { convert } from "html-to-text";
 import htmlToMarkdown from "@wcj/html-to-markdown";
 import { formats } from "./types_files";
-import { useState } from "react";
-import toast from "react-hot-toast";
 
 export const useShare = (): UseShareTypes => {
-  const [loading, setLoading] = useState({
-    loadingPdf: false,
-    loadingMarkdown: false,
-  });
-
-  const createFilePDF = async (content: string) => {
-    try {
-      setLoading({ ...loading, loadingPdf: true });
-      const response = await fetch("/api/generate-pdf", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          html: content,
-          filename: formats.pdf.filename,
-        }),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || "Error al generar PDF");
-      }
-
-      const blob = await response.blob();
-
-      transformFile(blob, formats.pdf.filename, "application/pdf");
-    } catch (error) {
-      console.error("Error en generateAndDownloadPDF:", error);
-      throw error;
-    } finally {
-      setLoading({ ...loading, loadingPdf: false });
-      toast.success("PDF completo", {
-        position: "bottom-right",
-        duration: 3000,
-      });
-    }
-
-  };
-
   const createFileMarkdown = async (content: string) => {
-    try {
-      setLoading({ ...loading, loadingMarkdown: true });
-
-      const markdown = await htmlToMarkdown({ html: content });
-      transformFile(markdown, formats.markdown.filename, formats.markdown.type);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setLoading({ ...loading, loadingMarkdown: false });
-      toast.success("Markdown completo", {
-        position: "bottom-right",
-        duration: 3000,
-      });
-    }
+    const markdown = await htmlToMarkdown({ html: content });
+    transformFile(markdown, formats.markdown.filename, formats.markdown.type);
   };
 
   const createFileText = (content: string) => {
@@ -70,14 +16,11 @@ export const useShare = (): UseShareTypes => {
   };
 
   const transformFile = (
-    content: string | Blob,
+    content: string,
     filename: string,
     typeMIME: string
   ) => {
-    const blob =
-      content instanceof Blob
-        ? content
-        : new Blob([content], { type: typeMIME });
+    const blob = new Blob([content], { type: typeMIME });
 
     const url = URL.createObjectURL(blob);
     const link = document.createElement("a");
@@ -90,10 +33,8 @@ export const useShare = (): UseShareTypes => {
   };
 
   return {
-    createFilePDF,
     transformFile,
     createFileMarkdown,
     createFileText,
-    loading,
   };
 };
