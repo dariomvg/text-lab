@@ -28,6 +28,7 @@
     "@tiptap/react": "^2.22.3",
     "@tiptap/starter-kit": "^2.22.3",
     "@wcj/html-to-markdown": "^2.1.1",
+    "html-pdf-node": "^1.0.8",
     "html-to-text": "^9.0.5",
     "html2canvas": "^1.4.1",
     "lowlight": "^3.3.0",
