@@ -1,15 +1,14 @@
-import { NextResponse } from 'next/server';
 import puppeteer from 'puppeteer-core';
 import chromium from '@sparticuz/chromium';
 
-export const runtime = 'nodejs'; 
+export const runtime = 'nodejs';
 
 export async function POST(req: Request) {
   try {
     const { html } = await req.json();
     const isProd = process.env.NODE_ENV === 'production';
 
-    
+    // 👇 obtenemos la ruta del binario correcto
     const executablePath = isProd
       ? await chromium.executablePath()
       : process.platform === 'win32'
@@ -18,9 +17,10 @@ export async function POST(req: Request) {
           ? '/usr/bin/google-chrome'
           : '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 
+    // ⚙️ configuración especial para serverless
     const browser = await puppeteer.launch({
       args: chromium.args,
-      defaultViewport: {width: 1920, height: 1080},
+      defaultViewport: { width: 1920, height: 1080 },
       executablePath,
       headless: true,
     });
@@ -31,7 +31,11 @@ export async function POST(req: Request) {
       { waitUntil: 'networkidle0' }
     );
 
-    const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true });
+    const pdfBuffer = await page.pdf({
+      format: 'A4',
+      printBackground: true,
+    });
+
     await browser.close();
 
     return new Response(Buffer.from(pdfBuffer), {
@@ -40,8 +44,11 @@ export async function POST(req: Request) {
         'Content-Disposition': 'attachment; filename="documento.pdf"',
       },
     });
-  } catch (err) {
-    console.error('Error generando PDF:', err);
-    return NextResponse.json({ error: (err as Error).message }, { status: 500 });
+  } catch (error) {
+    console.error('Error generando PDF en createFilePDF:', error);
+    return new Response(
+      JSON.stringify({ error: (error as Error).message }),
+      { status: 500 }
+    );
   }
 }
