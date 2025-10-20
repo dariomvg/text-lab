@@ -21,6 +21,8 @@ export const useShare = (): UseShareTypes => {
         body: JSON.stringify({ html: content }),
       });
 
+      if (!res.ok) throw new Error("Error generando PDF");
+
       const blobPdf = await res.blob();
       transformFile(blobPdf, formats.pdf.filename, formats.pdf.type);
     } catch (error) {

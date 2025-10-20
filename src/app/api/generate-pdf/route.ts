@@ -14,15 +14,11 @@ export async function POST(req: Request) {
       args: chromium.args,
       executablePath,
       headless: true,
-      defaultViewport: { width: 1280, height: 800 },
     });
 
     const page = await browser.newPage();
 
-    await page.setContent(
-      `<!DOCTYPE html><html><head><meta charset="utf-8"></head><body>${html}</body></html>`,
-      { waitUntil: 'networkidle0' }
-    );
+    await page.setContent(`<!DOCTYPE html><html><body>${html}</body></html>`);
 
     const pdfBuffer = await page.pdf({
       format: 'A4',
@@ -31,7 +27,6 @@ export async function POST(req: Request) {
 
     await browser.close();
 
-    
     return new Response(Buffer.from(pdfBuffer), {
       headers: {
         'Content-Type': 'application/pdf',
